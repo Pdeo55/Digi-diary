@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const homeworkSchema = new mongoose.Schema(
   {
-   Title:String,
+   title:String,
    description:String,
    subject:String,
   },

@@ -1,9 +1,8 @@
 const express = require("express");
-const addhomework = require("../controllers/homework/addhomework");
-const gethomework = require("../controllers/homework/gethomework");
+const {addHomework, getAllhomework} = require('../controllers/Homework/homework.js')
 const homeworkRouter = express.Router();
 
-homeworkRouter.post("/add", addhomework);
-homeworkRouter.get("/get", gethomework);
+homeworkRouter.post("/add", addHomework);
+homeworkRouter.get("/get", getAllhomework);
 
 module.exports = homeworkRouter;

@@ -3,6 +3,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const homeworkRouter = require("./routes/homework")
 
 
 
@@ -23,7 +24,7 @@ app.use(
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: true }));
   app.use(cors());
-//   app.use("/api/", );
+  app.use("/api/homework",homeworkRouter );
 
   mongoose
   .connect(

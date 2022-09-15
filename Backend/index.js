@@ -3,6 +3,8 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const  fileUpload = require("express-fileupload")
+const cloudinary = require("cloudinary")
 const homeworkRouter = require("./routes/homework")
 
 
@@ -20,6 +22,22 @@ app.use(
       credentials: true,
     })
   );
+
+  cloudinary.config({
+    cloud_name: 'dauyolf5r',
+    api_key: '717465827265157',
+    api_secret: 'zWyi2rcKjVE0bewh10psQqMVhkU',
+  })
+
+  // const a =process.env.CLOUDINARY_CLOUD_NAME
+  // console.log(a)
+
+app.use(
+  fileUpload({
+    useTempFiles: true,
+    tempFileDir: "/tmp/",
+  })
+);
 
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: true }));

@@ -5,6 +5,13 @@ const homeworkSchema = new mongoose.Schema(
    title:String,
    description:String,
    subject:String,
+   cloudinary_id: {
+    type: String,
+  },
+  attachment: {
+    type: String,
+   
+  },
   },
   { timestamps: true }
 );

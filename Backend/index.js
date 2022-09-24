@@ -8,6 +8,7 @@ const cloudinary = require("cloudinary");
 const homeworkRouter = require("./routes/homework");
 const UserRouter =require("./routes/user");
 const holidaysRouter =require("./routes/holidays");
+const auth =require("./middleware/Auth")
 
 const PORT = process.env.PORT || 8000;
 const app = express();
@@ -41,7 +42,7 @@ app.use(
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
-app.use("/api/homework", homeworkRouter);
+app.use("/api/homework",auth, homeworkRouter);
 app.use("/api/user", UserRouter);
 app.use("/api/holidays", holidaysRouter);
 

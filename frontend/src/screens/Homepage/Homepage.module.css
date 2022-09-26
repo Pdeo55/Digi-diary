@@ -1,0 +1,31 @@
+.options {
+    margin-top: 8rem;
+}
+
+.item {
+    cursor: pointer;
+    text-align: center;
+    padding: 1rem;
+}
+
+.item:hover {
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.item img {
+    width: 150px;
+    height: 150px;
+    border-radius: 10px;
+    border: 1px solid black;
+}
+
+.item p,
+a {
+    color: black;
+    text-decoration: none;
+}
+
+.item p {
+    margin-top: 1rem;
+    font-size: 2rem
+}

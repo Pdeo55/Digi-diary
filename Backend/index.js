@@ -3,30 +3,51 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const cors = require("cors");
-const homeworkRouter = require("./routes/homework")
-
-
+const fileUpload = require("express-fileupload");
+const cloudinary = require("cloudinary");
+const homeworkRouter = require("./routes/homework");
+const UserRouter =require("./routes/user");
+const holidaysRouter =require("./routes/holidays");
+const auth =require("./middleware/Auth")
 
 const PORT = process.env.PORT || 8000;
 const app = express();
 
+app.use(
+  cors({
+    origin: "*",
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    preflightContinue: false,
+    optionsSuccessStatus: 204,
+    credentials: true,
+  })
+);
+
+cloudinary.config({
+  cloud_name: "dauyolf5r",
+  api_key: "717465827265157",
+  api_secret: "zWyi2rcKjVE0bewh10psQqMVhkU",
+});
+
+// const a =process.env.CLOUDINARY_CLOUD_NAME
+// console.log(a)
 
 app.use(
-    cors({
-      origin: "*",
-      methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-      preflightContinue: false,
-      optionsSuccessStatus: 204,
-      credentials: true,
-    })
-  );
+  fileUpload({
+    useTempFiles: true,
+    tempFileDir: "/tmp/",
+  })
+);
 
-  app.use(bodyParser.json());
-  app.use(bodyParser.urlencoded({ extended: true }));
-  app.use(cors());
-  app.use("/api/homework",homeworkRouter );
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors());
+app.use("/api/homework",auth, homeworkRouter);
+app.use("/api/user", UserRouter);
+app.use("/api/holidays", holidaysRouter);
 
-  mongoose
+
+mongoose
   .connect(
     "mongodb+srv://Work:Work123@cluster0.c2p2qtq.mongodb.net/?retryWrites=true&w=majority",
     {

@@ -1,10 +1,8 @@
 const mongoose = require("mongoose");
 
-const homeworkSchema = new mongoose.Schema(
+const holidaysSchema = new mongoose.Schema(
   {
    title:String,
-   description:String,
-   subject:String,
    cloudinary_id: {
     type: String,
   },
@@ -16,4 +14,4 @@ const homeworkSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("homework", homeworkSchema);
+module.exports = mongoose.model("holidays", holidaysSchema);

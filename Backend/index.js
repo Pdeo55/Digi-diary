@@ -42,7 +42,7 @@ app.use(
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
-app.use("/api/homework",auth, homeworkRouter);
+app.use("/api/homework", homeworkRouter);
 app.use("/api/user", UserRouter);
 app.use("/api/holidays", holidaysRouter);
 

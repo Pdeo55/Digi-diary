@@ -3,6 +3,8 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const config = require('../../middleware/config');
 
+
+
 const addUser = async (req, res) => {
   const { name, phoneNo, email, password } = req.body;
   if (!(email && password && name)) {
@@ -37,5 +39,7 @@ const addUser = async (req, res) => {
     res.status(400).json({ error: error.message });
   }
 };
+
+
 
 module.exports = {addUser};

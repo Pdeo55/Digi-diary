@@ -16,7 +16,7 @@ function Register() {
         email: '',
         password: '',
         password2: '',
-        grade: null,
+        grade: '',
         role: '',
     })
 
@@ -143,18 +143,18 @@ function Register() {
                     <div className='form-group'>
                         <select name="grade" id="grade" onChange={onChange}>
                             <option value="select">--Select Class--</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
+                            <option value="1st">1</option>
+                            <option value="2nd">2</option>
+                            <option value="3rd">3</option>
+                            <option value="4th">4</option>
+                            <option value="5th">5</option>
                         </select>
                     </div>
                     <div className='form-group'>
                         <select name="role" id="role" onChange={onChange}>
                             <option value="select">--Select Role--</option>
-                            <option value="teacher">Teacher</option>
-                            <option value="parent">Parent</option>
+                            <option value="TEACHER">Teacher</option>
+                            <option value="STUDENT">Parent</option>
                         </select>
                     </div>
                     <div className='form-group'>

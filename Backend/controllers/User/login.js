@@ -3,8 +3,6 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const config = require('../../middleware/config');
 
-
-
 const login = async (req, res) => {
   const { email, password } = req.body;
   if (!(email && password)) {

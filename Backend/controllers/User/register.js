@@ -2,11 +2,13 @@ const User = require("../../models/user");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const config = require('../../middleware/config');
+const roles = require("../../utils/roles")
+
 
 
 
 const addUser = async (req, res) => {
-  const { name, phoneNo, email, password } = req.body;
+  const { name, phoneNo, email, password,role } = req.body;
   if (!(email && password && name)) {
     res.status(400).send("All input is required");
   }
@@ -24,6 +26,7 @@ const addUser = async (req, res) => {
       email:email.toLowerCase(),
       password:encryptedpass,
       class: req.body.class,
+      role:req.body.role || roles.Student,
     });
 
     const token = jwt.sign(

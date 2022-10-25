@@ -12,12 +12,13 @@ const login = async (req, res) => {
   }
   try {
     const user = await User.findOne({ email });
-   
-
-    if (user && (await bcrypt.compare(password, user.password))) {
+   const pass = await bcrypt.compare(password, user.password)
+// console.log(pass)
+    if (user && pass) {
       const token = jwt.sign({ user_id: user._id, email }, config.TOKEN_KEY, {
         expiresIn: "2h",
       });
+
 
       user.token = token;
       res.status(200).json(user);

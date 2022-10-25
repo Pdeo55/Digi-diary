@@ -25,7 +25,7 @@ const addUser = async (req, res) => {
       phoneNo,
       email:email.toLowerCase(),
       password:encryptedpass,
-      class: req.body.class,
+      grade: req.body.grade,
       role:req.body.role || roles.Student,
     });
 

@@ -1,5 +1,54 @@
-.navbar {
-    width: 100%;
-    background: rgb(255, 157, 255);
-    height: 10vh;
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    border-bottom: 1px solid #e6e6e6;
+    margin-bottom: 60px;
+}
+
+.logo p{
+    margin: 0%;
+    padding: 0%;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.header ul {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header ul li {
+    margin-left: 20px;
+}
+
+.header ul li a {
+    display: flex;
+    align-items: center;
+}
+
+.header ul li a:hover {
+    color: #777;
+}
+
+.header ul li a svg {
+    margin-right: 5px;
+}
+
+.btn {
+    padding: 10px 20px;
+    border: 1px solid #000;
+    border-radius: 5px;
+    background: #000;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    text-align: center;
+    appearance: button;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

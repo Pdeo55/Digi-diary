@@ -29,7 +29,7 @@ function Login() {
         }
 
         if (isSuccess || user) {
-            navigate('/homepage')
+            navigate('/')
         }
 
         dispatch(reset())
@@ -59,18 +59,18 @@ function Login() {
 
     return (
         <>
-            <section className='heading'>
+            <section className={classes.heading}>
                 <h1>
                     <FaSignInAlt /> Login
                 </h1>
             </section>
 
-            <section className='form'>
+            <section className={classes.form}>
                 <form onSubmit={onSubmit}>
-                    <div className='form-group'>
+                    <div className={classes.formGroup}>
                         <input
                             type='email'
-                            className='form-control'
+                            className={classes.formControl}
                             id='email'
                             name='email'
                             value={email}
@@ -78,10 +78,10 @@ function Login() {
                             onChange={onChange}
                         />
                     </div>
-                    <div className='form-group'>
+                    <div className={classes.formGroup}>
                         <input
                             type='password'
-                            className='form-control'
+                            className={classes.formControl}
                             id='password'
                             name='password'
                             value={password}
@@ -90,8 +90,8 @@ function Login() {
                         />
                     </div>
 
-                    <div className='form-group'>
-                        <button type='submit' className='btn btn-block'>
+                    <div className={classes.formGroup}>
+                        <button type='submit' className={classes.btn}>
                             Submit
                         </button>
                     </div>

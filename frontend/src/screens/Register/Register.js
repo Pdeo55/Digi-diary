@@ -35,7 +35,7 @@ function Register() {
         }
     
         if (isSuccess || user) {
-        //   navigate('homepage')
+          navigate('/')
           console.log("Done")
         }
     
@@ -76,19 +76,19 @@ function Register() {
 
     return (
         <>
-            <section className='heading'>
+            <section className={classes.heading}>
                 <h1>
                     <FaUser /> Register
                 </h1>
                 <p>Please create an account</p>
             </section>
 
-            <section className='form'>
+            <section className={classes.form}>
                 <form onSubmit={onSubmit}>
-                    <div className='form-group'>
+                    <div className={classes.formGroup}>
                         <input
                             type='text'
-                            className='form-control'
+                            className={classes.formControl}
                             id='name'
                             name='name'
                             value={name}
@@ -96,7 +96,7 @@ function Register() {
                             onChange={onChange}
                         />
                     </div>
-                    <div className='form-group'>
+                    <div className={classes.formGroup}>
                         <input
                             type='email'
                             className='form-control'
@@ -107,10 +107,10 @@ function Register() {
                             onChange={onChange}
                         />
                     </div>
-                    <div className='form-group'>
+                    <div className={classes.formGroup}>
                         <input
                             type='phoneNo'
-                            className='form-control'
+                            className={classes.formControl}
                             id='phoneNo'
                             name='phoneNo'
                             value={phoneNo}
@@ -118,10 +118,10 @@ function Register() {
                             onChange={onChange}
                         />
                     </div>
-                    <div className='form-group'>
+                    <div className={classes.formGroup}>
                         <input
                             type='password'
-                            className='form-control'
+                            className={classes.formControl}
                             id='password'
                             name='password'
                             value={password}
@@ -129,10 +129,10 @@ function Register() {
                             onChange={onChange}
                         />
                     </div>
-                    <div className='form-group'>
+                    <div className={classes.formGroup}>
                         <input
                             type='password'
-                            className='form-control'
+                            className={classes.formControl}
                             id='password2'
                             name='password2'
                             value={password2}
@@ -140,25 +140,25 @@ function Register() {
                             onChange={onChange}
                         />
                     </div>
-                    <div className='form-group'>
+                    <div className={classes.formGroup}>
                         <select name="grade" id="grade" onChange={onChange}>
                             <option value="select">--Select Class--</option>
-                            <option value="1st">1</option>
-                            <option value="2nd">2</option>
-                            <option value="3rd">3</option>
-                            <option value="4th">4</option>
-                            <option value="5th">5</option>
+                            <option value="1">1st</option>
+                            <option value="2">2nd</option>
+                            <option value="3">3rd</option>
+                            <option value="4">4th</option>
+                            <option value="5">5th</option>
                         </select>
                     </div>
-                    <div className='form-group'>
+                    <div className={classes.formGroup}>
                         <select name="role" id="role" onChange={onChange}>
                             <option value="select">--Select Role--</option>
                             <option value="TEACHER">Teacher</option>
                             <option value="STUDENT">Parent</option>
                         </select>
                     </div>
-                    <div className='form-group'>
-                        <button type='submit' className='btn btn-block'>
+                    <div className={classes.formGroup}>
+                        <button type='submit' className={classes.btn}>
                             Submit
                         </button>
                     </div>

@@ -19,7 +19,7 @@ try {
   const userid = req.params.id;
 
   const gradeofuser = await user.findOne({_id:userid},"grade");
-  // res.status(200).json(gradeofuser);
+ 
 
   const homework = await Homework.find({grade:gradeofuser.grade});
    res.status(200).json(homework);
@@ -30,7 +30,20 @@ try {
 }
 };
 
+const homeworkbyteacher = async(req,res)=>{
+  try {
+    const teacherid = req.params.id;
+
+    const homework = await Homework.find({teacherid:teacherid});
+     res.status(200).json(homework);
+  
+    
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+  };
 
 
 
-module.exports = { getAllhomework,homeworkbygrade};
+
+module.exports = { getAllhomework,homeworkbygrade,homeworkbyteacher};

@@ -1,61 +1,16 @@
-import { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import { Container, Table } from 'react-bootstrap'
-import { GrAttachment } from 'react-icons/gr'
-import axios from 'axios'
-import Welcome from '../../components/Welcome'
+import { Container } from 'react-bootstrap'
+import ParentHW from './Parent/ParentHW'
 import TeacherHW from './Teacher/TeacherHW'
-
-const baseURL = "http://localhost:8000/api/homework/get";
 
 function Homework() {
 
-    const [homeworks, setHomeworks] = useState(null);
-
     const { user } = useSelector((state) => state.auth)
-
-    useEffect(() => {
-        axios.get(baseURL).then((response) => {
-            setHomeworks(response.data)
-        })
-    }, [])
-
 
     return (
         <Container fluid>
-            {user.role === "STUDENT" &&
-                <>
-                    <Container className='mt-5'>
-                        <Welcome />
-                        <Table striped bordered hover className='mt-5'>
-                            <thead>
-                                <tr>
-                                    <th>Title</th>
-                                    <th>Description</th>
-                                    <th>Subject</th>
-                                    <th>Attachment (Click to view)</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {homeworks && homeworks.map((homework) => (
-                                    <tr key={homework._id}>
-                                        <td>{homework?.title}</td>
-                                        <td>{homework.description}</td>
-                                        <td>{homework.subject}</td>
-                                        <td style={{ cursor: 'pointer' }}>
-                                            <a href={homework.attachment} target="_blank">
-                                                <GrAttachment />
-                                            </a>
-                                        </td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </Table>
-                    </Container>
-                </>
-            }
-            {user.role === "TEACHER" && <TeacherHW/>}
-
+            {user.role === "STUDENT" && <ParentHW />}
+            {user.role === "TEACHER" && <TeacherHW />}
         </Container>
     )
 }

@@ -46,3 +46,10 @@
     width: 100%;
     margin-bottom: 20px;
 }
+
+.homeworkDiv {
+    max-height: 35vh;
+    overflow-y: scroll;
+    border-bottom: 2px solid black;
+    margin-bottom: 2rem;
+}

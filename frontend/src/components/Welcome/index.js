@@ -5,7 +5,6 @@ import classes from './Welcome.module.css'
 function Welcome() {
 
     const { user } = useSelector((state) => state.auth)
-    console.log(user)
 
     return (
         <Container className={classes.welcome}>

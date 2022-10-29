@@ -66,7 +66,6 @@ function Register() {
             }
 
             dispatch(register(userData))
-            console.log(userData);
         }
     }
 

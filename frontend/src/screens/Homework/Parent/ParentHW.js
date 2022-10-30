@@ -6,33 +6,21 @@ import { getAllHomework, getHomeworkByGrade } from '../../../features/homework/h
 import Welcome from '../../../components/Welcome'
 import Spinner from '../../../components/Spinner/Spinner'
 import axios from 'axios'
-
-const API_URL = 'http://localhost:8000/api/homework/getbygrade/'
+import classes from '../Homework.module.css'
 
 function ParentHW() {
 
-  // const dispatch = useDispatch()
+  const dispatch = useDispatch()
 
   const { user } = useSelector((state => state.auth))
-  // const { homeworks, isLoading, isError, message } = useSelector((state) => state.homeworks)
+  const { homeworks } = useSelector((state) => state.homeworks)
 
-  // if (isLoading) {
-  //   return <Spinner />
-  // }
-
-  const [homeworks, setHomeworks] = useState(null);
-
-  useEffect(() => {
-    axios.get(API_URL + `${user._id}`
-    ).then((response) => {
-      setHomeworks(response.data)
-    })
-  }, [])
+  dispatch(getHomeworkByGrade(user._id))
 
   return (
     <Container className='mt-5'>
       <Welcome />
-      <Table striped bordered hover className='mt-5'>
+      <Table striped bordered hover className={classes.parentTable}>
         <thead>
           <tr>
             <th>Title</th>

@@ -21,7 +21,19 @@ const getHomeworkByGrade = async (studentId, token) => {
         }
     }
 
-    const response = await axios.get(API_URL+'/get'+`/${studentId}`, config)
+    const response = await axios.get(API_URL+'/getbygrade'+`/${studentId}`, config)
+
+    return response.data
+}
+
+const getHomeworkByTeacher = async (teacherId, token) => {
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }
+
+    const response = await axios.get(API_URL+'/getbyteacher'+`/${teacherId}`, config)
 
     return response.data
 }
@@ -41,7 +53,8 @@ const createHomework = async (homeworkData, token) => {
 const homeworkService = {
     createHomework, 
     getAllHomework, 
-    getHomeworkByGrade
+    getHomeworkByGrade,
+    getHomeworkByTeacher
 }
 
 export default homeworkService

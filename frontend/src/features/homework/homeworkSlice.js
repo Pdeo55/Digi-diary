@@ -12,7 +12,7 @@ const initialState = {
 
 // create new homework
 export const createHomework = createAsyncThunk(
-    'goals/create',
+    'homeworks/create',
     async (homeworkData, thunkAPI) => {
         try {
             const token = thunkAPI.getState().auth.user.token
@@ -50,11 +50,29 @@ export const getAllHomework = createAsyncThunk(
 
 // get homework by grade
 export const getHomeworkByGrade = createAsyncThunk(
-    'goals/getByGrade',
+    'homeworks/getByGrade',
     async (id, thunkAPI) => {
         try {
             const token = thunkAPI.getState().auth.user.token
             return await homeworkService.getHomeworkByGrade(id, token)
+        } catch (error) {
+            const message =
+                (error.response &&
+                    error.response.data &&
+                    error.response.data.message) ||
+                error.message ||
+                error.toString()
+            return thunkAPI.rejectWithValue(message)
+        }
+    }
+)
+
+export const getHomeworkByTeacher = createAsyncThunk(
+    'homeworks/getByTeacher',
+    async (id, thunkAPI) => {
+        try {
+            const token = thunkAPI.getState().auth.user.token
+            return await homeworkService.getHomeworkByTeacher(id, token)
         } catch (error) {
             const message =
                 (error.response &&
@@ -111,6 +129,20 @@ export const homeworkSlice = createSlice({
 
             })
             .addCase(getHomeworkByGrade.rejected, (state, action) => {
+                state.isLoading = false
+                state.isError = true
+                state.message = action.payload
+            })
+            .addCase(getHomeworkByTeacher.pending, (state) => {
+                state.isLoading = true
+            })
+            .addCase(getHomeworkByTeacher.fulfilled, (state, action) => {
+                state.isLoading = false
+                state.isSuccess = true
+                state.homeworks = action.payload
+
+            })
+            .addCase(getHomeworkByTeacher.rejected, (state, action) => {
                 state.isLoading = false
                 state.isError = true
                 state.message = action.payload

@@ -1,19 +1,16 @@
 import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { createHomework } from '../../../features/homework/homeworkSlice'
+import { createHomework, getHomeworkByTeacher } from '../../../features/homework/homeworkSlice'
 import { Table } from 'react-bootstrap'
 import { GrAttachment } from 'react-icons/gr'
-import axios from 'axios'
 import classes from '../Homework.module.css'
-
-const API_URL = 'http://localhost:8000/api/homework/getbyteacher/'
+import Spinner from '../../../components/Spinner/Spinner'
 
 function TeacherHW() {
 
     const dispatch = useDispatch()
 
     const [viewPrev, setViewPrev] = useState(false)
-    const [homeworks, setHomeworks] = useState(null);
 
     const [title, setTitle] = useState('')
     const [subject, setSubject] = useState('')
@@ -22,20 +19,15 @@ function TeacherHW() {
     const [attachment, setAttachment] = useState(null)
 
     const { user } = useSelector((state) => state.auth)
+    const { homeworks, isLoading } = useSelector((state) => state.homeworks)
 
     const onClickViewPrev = () => {
         setViewPrev((prev) => !prev)
+
+        // get all previous homeworks for teacher
+        dispatch(getHomeworkByTeacher(user._id))
     }
 
-    // get all previous homeworks for teacher
-    useEffect(() => {
-        axios.get(API_URL + `${user._id}`).then((response) => {
-            console.log(response.data)
-            setHomeworks(response.data)
-        })
-    }, [])
-
-    // post new homework for students
     const onSubmit = (e) => {
         e.preventDefault()
 
@@ -48,8 +40,17 @@ function TeacherHW() {
         formData.append('grade', grade)
         formData.append('teacherid', user._id)
 
+        console.log("hi")
+
+        // post new homework for students
         dispatch(createHomework(formData))
-        console.log(formData)
+
+        // clearing the state
+        setTitle('')
+        setDescription('')
+        setSubject('')
+        setDescription('')
+        setGrade('')
     }
 
     return (
@@ -110,6 +111,7 @@ function TeacherHW() {
                             name='subject'
                             value={subject}
                             placeholder="Enter the Subject"
+                            required
                             onChange={(e) => setSubject(e.target.value)}
                         />
                     </div>
@@ -121,6 +123,7 @@ function TeacherHW() {
                             name='title'
                             value={title}
                             placeholder="Enter the title"
+                            required
                             onChange={(e) => setTitle(e.target.value)}
                         />
                     </div>
@@ -131,11 +134,12 @@ function TeacherHW() {
                             name='description'
                             value={description}
                             placeholder="Enter the description for the homework..."
-                            onChange={(e)=> setDescription(e.target.value)}
+                            required
+                            onChange={(e) => setDescription(e.target.value)}
                         />
                     </div>
                     <div className={classes.formGroup}>
-                        <select name="grade" id="grade" onChange={(e)=>setGrade(e.target.value)}>
+                        <select name="grade" id="grade" required onChange={(e) => setGrade(e.target.value)}>
                             <option value="select">--Select Class--</option>
                             <option value="1">1st</option>
                             <option value="2">2nd</option>
@@ -146,7 +150,7 @@ function TeacherHW() {
                     </div>
                     <div className={classes.formGroup}>
                         <label htmlFor="attachment">Upload any Image/Pdf</label>
-                        <input type="file" id="attachment" name="attachment" accept="image/png, image/jpeg, application/pdf" onChange={(e)=>setAttachment(e.target.files[0])} />
+                        <input type="file" id="attachment" required name="attachment" accept="image/png, image/jpeg, application/pdf" onChange={(e) => setAttachment(e.target.files[0])} />
                     </div>
                     <div className={classes.formGroup}>
                         <button type='submit' className={classes.btn}>

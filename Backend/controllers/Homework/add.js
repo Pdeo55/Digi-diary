@@ -21,7 +21,7 @@ const addHomework = async (req, res) => {
         attachment: attach.secure_url,
         cloudinary_id: attach.public_id,
       });
-      console.log(homework);
+      // console.log(homework);
       res.status(200).json(homework);
     } catch (error) {
       res.status(400).json({ error: error.message });

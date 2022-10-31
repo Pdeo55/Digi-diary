@@ -72,6 +72,7 @@ function Register() {
     if (isLoading) {
         return <Spinner />
     }
+   
 
     return (
         <>
@@ -113,7 +114,7 @@ function Register() {
                             id='phoneNo'
                             name='phoneNo'
                             value={phoneNo}
-                            placeholder='Enter your Phone phoneNo'
+                            placeholder='Enter your Contact Number'
                             onChange={onChange}
                         />
                     </div>
@@ -140,6 +141,13 @@ function Register() {
                         />
                     </div>
                     <div className={classes.formGroup}>
+                        <select name="role" id="role" onChange={onChange}>
+                            <option value="select">--Select Role--</option>
+                            <option value="TEACHER">Teacher</option>
+                            <option value="STUDENT">Student</option>
+                        </select>
+                    </div>
+                    {formData.role ==="STUDENT"?<div className={classes.formGroup}>
                         <select name="grade" id="grade" onChange={onChange}>
                             <option value="select">--Select Class--</option>
                             <option value="1">1st</option>
@@ -148,14 +156,9 @@ function Register() {
                             <option value="4">4th</option>
                             <option value="5">5th</option>
                         </select>
-                    </div>
-                    <div className={classes.formGroup}>
-                        <select name="role" id="role" onChange={onChange}>
-                            <option value="select">--Select Role--</option>
-                            <option value="TEACHER">Teacher</option>
-                            <option value="STUDENT">Parent</option>
-                        </select>
-                    </div>
+                    </div> :null}
+                    
+                   
                     <div className={classes.formGroup}>
                         <button type='submit' className={classes.btn}>
                             Submit

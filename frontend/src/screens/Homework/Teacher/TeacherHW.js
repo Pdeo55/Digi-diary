@@ -1,8 +1,9 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { createHomework, getHomeworkByTeacher } from '../../../features/homework/homeworkSlice'
+import { createHomework, getHomeworkByTeacher, deleteHomework } from '../../../features/homework/homeworkSlice'
 import { Table } from 'react-bootstrap'
 import { GrAttachment } from 'react-icons/gr'
+import { AiFillDelete } from 'react-icons/ai'
 import classes from '../Homework.module.css'
 import Spinner from '../../../components/Spinner/Spinner'
 
@@ -53,6 +54,10 @@ function TeacherHW() {
         setGrade('')
     }
 
+    if (isLoading) {
+        return <Spinner />
+    }
+
     return (
         <div className='p-5'>
             {viewPrev ?
@@ -80,22 +85,26 @@ function TeacherHW() {
                                 <th>Title</th>
                                 <th>Description</th>
                                 <th>Subject</th>
+                                <th>Class</th>
                                 <th>Attachment (Click to view)</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {homeworks && homeworks.map((homework) => (
+                            {homeworks && homeworks.length > 1 && homeworks.map((homework) => (
                                 <tr key={homework._id}>
                                     <td>{homework?.title}</td>
                                     <td>{homework.description}</td>
                                     <td>{homework.subject}</td>
+                                    <td>{homework.grade}</td>
                                     <td style={{ cursor: 'pointer' }}>
-                                        <a href={homework.attachment} target="_blank">
+                                        <a href={homework.attachment} target="_blank" rel="noreferrer" >
                                             <GrAttachment />
                                         </a>
                                     </td>
+                                    <td style={{ cursor: 'pointer' }} onClick={() => { dispatch(deleteHomework(homework._id)) }}><AiFillDelete /></td>
                                 </tr>
                             ))}
+                            {homeworks.length === 0 && <p>No Homeworks Assigned</p>}
                         </tbody>
                     </Table>
                 </div>

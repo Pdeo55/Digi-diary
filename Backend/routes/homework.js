@@ -10,7 +10,7 @@ homeworkRouter.get("/get",getAllhomework);
 
 homeworkRouter.get("/getbygrade/:id",homeworkbygrade);
 homeworkRouter.get("/getbyteacher/:id",homeworkbyteacher);
-homeworkRouter.get("/delete/:id",deletehomework);
+homeworkRouter.delete("/delete/:id",deletehomework);
 
 
 module.exports = homeworkRouter;

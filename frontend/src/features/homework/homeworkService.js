@@ -50,11 +50,24 @@ const createHomework = async (homeworkData, token) => {
     return response.data
 }
 
+const deleteHomework = async (homeworkId, token) => {
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }
+
+    const response = await axios.delete(API_URL+'/delete'+`/${homeworkId}`, config)
+
+    return response.data
+}
+
 const homeworkService = {
     createHomework, 
     getAllHomework, 
     getHomeworkByGrade,
-    getHomeworkByTeacher
+    getHomeworkByTeacher,
+    deleteHomework
 }
 
 export default homeworkService

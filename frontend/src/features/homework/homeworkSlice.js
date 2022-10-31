@@ -85,6 +85,24 @@ export const getHomeworkByTeacher = createAsyncThunk(
     }
 )
 
+export const deleteHomework = createAsyncThunk(
+    'homeworks/deleteHomework',
+    async (id, thunkAPI) => {
+        try {
+            const token = thunkAPI.getState().auth.user.token
+            return await homeworkService.deleteHomework(id, token)
+        } catch (error) {
+            const message =
+                (error.response &&
+                    error.response.data &&
+                    error.response.data.message) ||
+                error.message ||
+                error.toString()
+            return thunkAPI.rejectWithValue(message)
+        }
+    }
+)
+
 export const homeworkSlice = createSlice({
     name: "homework",
     initialState,
@@ -143,6 +161,19 @@ export const homeworkSlice = createSlice({
 
             })
             .addCase(getHomeworkByTeacher.rejected, (state, action) => {
+                state.isLoading = false
+                state.isError = true
+                state.message = action.payload
+            })
+            .addCase(deleteHomework.pending, (state) => {
+                state.isLoading = true
+            })
+            .addCase(deleteHomework.fulfilled, (state, action) => {
+                state.isLoading = false
+                state.isSuccess = true
+                state.homeworks = state.homeworks.filter((homework) => (homework._id !== action.payload.id))
+            })
+            .addCase(deleteHomework.rejected, (state, action) => {
                 state.isLoading = false
                 state.isError = true
                 state.message = action.payload

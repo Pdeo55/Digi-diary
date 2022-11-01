@@ -14,9 +14,6 @@ const getAllHoliday = async (token) => {
     return response.data
 }
 
-
-
-
 const createHoliday = async (holidayData, token) => {
     const config = {
         headers: {

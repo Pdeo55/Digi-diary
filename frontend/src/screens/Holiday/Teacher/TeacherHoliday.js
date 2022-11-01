@@ -11,19 +11,17 @@ function TeacherHoliday() {
   const dispatch = useDispatch();
 
   const [viewPrev, setViewPrev] = useState(false);
-
   const [title, setTitle] = useState("");
- 
   const [attachment, setAttachment] = useState(null);
 
-//   const { user } = useSelector((state) => state.auth);
+  //   const { user } = useSelector((state) => state.auth);
   const { holidays, isLoading } = useSelector((state) => state.holidays);
 
   const onClickViewPrev = () => {
     setViewPrev((prev) => !prev);
 
     // get all previous holidays for teacher
-    dispatch(getAllHoliday)
+    dispatch(getAllHoliday())
   };
 
   const onSubmit = (e) => {
@@ -33,17 +31,15 @@ function TeacherHoliday() {
 
     formData.append("attachment", attachment);
     formData.append("title", title);
-   
-    // formData.append("teacherid", user._id);
 
-    console.log("hi");
+    // formData.append("teacherid", user._id);
 
     // post new holiday for students
     dispatch(createHoliday(formData))
 
     // clearing the state
     setTitle("");
-   
+
   };
 
   if (isLoading) {
@@ -71,7 +67,6 @@ function TeacherHoliday() {
             <thead>
               <tr>
                 <th>Title</th>
-
                 <th>Attachment (Click to view)</th>
               </tr>
             </thead>
@@ -91,14 +86,14 @@ function TeacherHoliday() {
                         <GrAttachment />
                       </a>
                     </td>
-                    <td
+                    {/* <td
                       style={{ cursor: "pointer" }}
                       onClick={() => {
                         dispatch(getAllHoliday);
                       }}
                     >
                       <AiFillDelete />
-                    </td>
+                    </td> */}
                     {/* deleteholiday(holiday._id) */}
                   </tr>
                 ))}
@@ -107,7 +102,7 @@ function TeacherHoliday() {
           </Table>
         </div>
       )}
-      <p className={classes.text}>Want to give your Students some holiday ??</p>
+      <p className={classes.text}>Enter the details for the holidays</p>
       <section className={classes.form}>
         <form onSubmit={onSubmit}>
           <div className={classes.formGroup}>

@@ -27,6 +27,7 @@ function TeacherHW() {
 
         // get all previous homeworks for teacher
         dispatch(getHomeworkByTeacher(user._id))
+        console.log(homeworks)
     }
 
     const onSubmit = (e) => {
@@ -90,7 +91,7 @@ function TeacherHW() {
                             </tr>
                         </thead>
                         <tbody>
-                            {homeworks && homeworks.length > 1 && homeworks.map((homework) => (
+                            {homeworks && homeworks.length > 0 && homeworks.map((homework) => (
                                 <tr key={homework._id}>
                                     <td>{homework?.title}</td>
                                     <td>{homework.description}</td>
@@ -104,9 +105,9 @@ function TeacherHW() {
                                     <td style={{ cursor: 'pointer' }} onClick={() => { dispatch(deleteHomework(homework._id)) }}><AiFillDelete /></td>
                                 </tr>
                             ))}
-                            {homeworks.length === 0 && <p>No Homeworks Assigned</p>}
                         </tbody>
                     </Table>
+                    {homeworks.length === 0 && <p>No Homeworks Assigned</p>}
                 </div>
             )}
             <p className={classes.text}>Want to give your Students some Homework ??</p>

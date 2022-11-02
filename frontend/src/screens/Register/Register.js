@@ -1,4 +1,5 @@
 import React from "react";
+import { Col, Row } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -72,7 +73,7 @@ function Register() {
   }
 
   return (
-    <>
+    <div className={classes.container}>
       <section className={classes.heading}>
         <h1>
           <FaUser /> Register
@@ -93,50 +94,63 @@ function Register() {
               onChange={onChange}
             />
           </div>
-          <div className={classes.formGroup}>
-            <input
-              type="email"
-              className="form-control"
-              id="email"
-              name="email"
-              value={email}
-              placeholder="Enter your email"
-              onChange={onChange}
-            />
-          </div>
-          <div className={classes.formGroup}>
-            <input
-              type="phoneNo"
-              className={classes.formControl}
-              id="phoneNo"
-              name="phoneNo"
-              value={phoneNo}
-              placeholder="Enter your Contact Number"
-              onChange={onChange}
-            />
-          </div>
-          <div className={classes.formGroup}>
-            <input
-              type="password"
-              className={classes.formControl}
-              id="password"
-              name="password"
-              value={password}
-              placeholder="Enter password"
-              onChange={onChange}
-            />
-          </div>
-          <div className={classes.formGroup}>
-            <input
-              type="password"
-              className={classes.formControl}
-              id="password2"
-              name="password2"
-              value={password2}
-              placeholder="Confirm password"
-              onChange={onChange}
-            />
-          </div>
+          <Row>
+            <Col>
+              <div className={classes.formGroup}>
+                <input
+                  type="email"
+                  className="form-control"
+                  id="email"
+                  name="email"
+                  value={email}
+                  placeholder="Enter your email"
+                  onChange={onChange}
+                />
+              </div>
+            </Col>
+            <Col>
+              <div className={classes.formGroup}>
+                <input
+                  type="phoneNo"
+                  className={classes.formControl}
+                  id="phoneNo"
+                  name="phoneNo"
+                  value={phoneNo}
+                  placeholder="Enter your Contact Number"
+                  onChange={onChange}
+                />
+              </div>
+            </Col>
+          </Row>
+
+          <Row>
+            <Col>
+              <div className={classes.formGroup}>
+                <input
+                  type="password"
+                  className={classes.formControl}
+                  id="password"
+                  name="password"
+                  value={password}
+                  placeholder="Enter password"
+                  onChange={onChange}
+                />
+              </div>
+            </Col>
+            <Col>
+              <div className={classes.formGroup}>
+                <input
+                  type="password"
+                  className={classes.formControl}
+                  id="password2"
+                  name="password2"
+                  value={password2}
+                  placeholder="Confirm password"
+                  onChange={onChange}
+                />
+              </div>
+            </Col>
+          </Row>
           <div className={classes.formGroup}>
             <select name="role" id="role" onChange={onChange}>
               <option value="select">Select Role</option>
@@ -164,7 +178,7 @@ function Register() {
           </div>
         </form>
       </section>
-    </>
+    </div>
   );
 }
 

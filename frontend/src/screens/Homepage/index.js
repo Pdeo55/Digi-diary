@@ -16,11 +16,9 @@ function Homepage() {
 
     const { user } = useSelector((state) => state.auth)
 
-    useEffect(() => {
-        if (!user) {
-            navigate('/login')
-        }
-    }, [user, navigate, dispatch])
+    if (!user) {
+        navigate('/login')
+    }
 
     return (
         <Container fluid>

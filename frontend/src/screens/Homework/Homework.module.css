@@ -57,3 +57,10 @@
 .parentTable {
     max-height: 65vh;
 }
+
+.button {
+    background-color: rgb(56, 53, 53);
+    cursor: pointer;
+    color: white;
+    border-radius: 8px;
+}

@@ -7,6 +7,9 @@ const homeworkSchema = new mongoose.Schema(
    subject:String,
    grade:String,
    teacherid:String,
+   studentId:String,
+   queQuery:String,
+   queId:String,
    cloudinary_id: {
     type: String,
   },

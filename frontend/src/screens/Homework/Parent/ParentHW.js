@@ -20,7 +20,6 @@ function ParentHW() {
 
   const onQueryClick = (homework) => {
     setShow(true)
-
     setHomework(homework)
   }
 
@@ -56,7 +55,6 @@ function ParentHW() {
                 </td>
                 <td>
                   <p className={classes.button} onClick={() => onQueryClick(homework)}>Query</p>
-                  {console.log(homework)}
                 </td>
               </tr>
             ))}

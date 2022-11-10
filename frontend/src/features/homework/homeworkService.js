@@ -9,7 +9,7 @@ const getAllHomework = async (token) => {
         }
     }
 
-    const response = await axios.get(API_URL+'/get', config)
+    const response = await axios.get(API_URL + '/get', config)
 
     return response.data
 }
@@ -21,7 +21,7 @@ const getHomeworkByGrade = async (studentId, token) => {
         }
     }
 
-    const response = await axios.get(API_URL+'/getbygrade'+`/${studentId}`, config)
+    const response = await axios.get(API_URL + '/getbygrade' + `/${studentId}`, config)
 
     return response.data
 }
@@ -33,7 +33,7 @@ const getHomeworkByTeacher = async (teacherId, token) => {
         }
     }
 
-    const response = await axios.get(API_URL+'/getbyteacher'+`/${teacherId}`, config)
+    const response = await axios.get(API_URL + '/getbyteacher' + `/${teacherId}`, config)
 
     return response.data
 }
@@ -45,7 +45,7 @@ const createHomework = async (homeworkData, token) => {
         }
     }
 
-    const response = await axios.post(API_URL+'/add', homeworkData, config)
+    const response = await axios.post(API_URL + '/add', homeworkData, config)
 
     return response.data
 }
@@ -57,17 +57,17 @@ const deleteHomework = async (homeworkId, token) => {
         }
     }
 
-    const response = await axios.delete(API_URL+'/delete'+`/${homeworkId}`, config)
+    const response = await axios.delete(API_URL + '/delete' + `/${homeworkId}`, config)
 
     return response.data
 }
 
 const homeworkService = {
-    createHomework, 
-    getAllHomework, 
+    createHomework,
+    getAllHomework,
     getHomeworkByGrade,
     getHomeworkByTeacher,
-    deleteHomework
+    deleteHomework,
 }
 
 export default homeworkService

@@ -59,8 +59,15 @@ function Homepage() {
             )}
             {user.role === 'TEACHER' && (
                 <>
-                    <Container className='mt-5'>
-                        <Welcome />
+                    <Container fluid className='mt-5'>
+                        <Row>
+                            <Col lg='11'>
+                                <Welcome />
+                            </Col>
+                            <Col lg='1'>
+                                <button className={classes.queryButton}>See Student queries</button>
+                            </Col>
+                        </Row>
                         <Row className={classes.options}>
                             <Col>
                                 <div className={classes.item}>

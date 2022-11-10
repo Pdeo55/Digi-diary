@@ -30,3 +30,14 @@ a {
     margin-top: 1rem;
     font-size: 2rem
 }
+
+.queryButton {
+    padding: 4px;
+    border: 1px solid #000;
+    border-radius: 5px;
+    background: rgb(36, 30, 30);
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+}

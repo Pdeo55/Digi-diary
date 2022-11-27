@@ -6,9 +6,12 @@ const cors = require("cors");
 const fileUpload = require("express-fileupload");
 const cloudinary = require("cloudinary");
 const homeworkRouter = require("./routes/homework");
-const UserRouter =require("./routes/user");
-const holidaysRouter =require("./routes/holidays");
-const auth =require("./middleware/Auth")
+const remindersRouter = require("./routes/Reminder")
+
+const UserRouter = require("./routes/user");
+const holidaysRouter = require("./routes/holidays");
+const auth = require("./middleware/Auth");
+const SetReminder =require("./utils/SetReminder")
 
 const PORT = process.env.PORT || 8000;
 const app = express();
@@ -22,6 +25,9 @@ app.use(
     credentials: true,
   })
 );
+
+setInterval(() => {SetReminder},2000);
+
 
 cloudinary.config({
   cloud_name: "dauyolf5r",
@@ -37,7 +43,6 @@ app.use(
     useTempFiles: true,
     tempFileDir: "/tmp/",
   })
-  
 );
 
 app.use(bodyParser.json());
@@ -46,7 +51,7 @@ app.use(cors());
 app.use("/api/homework", homeworkRouter);
 app.use("/api/user", UserRouter);
 app.use("/api/holidays", holidaysRouter);
-
+app.use("/api/reminders", remindersRouter);
 
 mongoose
   .connect(

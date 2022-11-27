@@ -1,0 +1,18 @@
+.textarea {
+    padding: 4px;
+    width: 100%;
+}
+
+.homeworkDetail {
+    font-weight: bold;
+}
+
+.datePicker {
+    margin-top: 1rem;
+    width: 100%;
+}
+
+.datePicker p {
+    padding: 0;
+    margin: 0;
+}

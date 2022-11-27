@@ -6,6 +6,7 @@ import { getHomeworkByGrade } from '../../../features/homework/homeworkSlice'
 import QueryModal from '../../../components/QueryModal/QueryModal'
 import Welcome from '../../../components/Welcome'
 import classes from '../Homework.module.css'
+import RemainderModal from '../../../components/ReminderModal/RemainderModal'
 
 function ParentHW() {
 
@@ -14,12 +15,18 @@ function ParentHW() {
   const { user } = useSelector((state => state.auth))
   const { homeworks } = useSelector((state) => state.homeworks)
 
-  const [show, setShow] = useState(false);
+  const [queModalShow, setQueModalShow] = useState(false);
+  const [remModalShow, setRemModalShow] = useState(false);
 
   const [homework, setHomework] = useState({})
 
   const onQueryClick = (homework) => {
-    setShow(true)
+    setQueModalShow(true)
+    setHomework(homework)
+  }
+
+  const onSetRemainderClick = (homework) => {
+    setRemModalShow(true)
     setHomework(homework)
   }
 
@@ -29,7 +36,8 @@ function ParentHW() {
 
   return (
     <>
-      {show && <QueryModal show={show} setShow={setShow} homework={homework} />}
+      {queModalShow && <QueryModal show={queModalShow} setShow={setQueModalShow} homework={homework} />}
+      {remModalShow && <RemainderModal show={remModalShow} setShow={setRemModalShow} homework={homework} />}
       <Container className='mt-5'>
         <Welcome />
         <Table striped bordered hover className={classes.parentTable}>
@@ -40,6 +48,7 @@ function ParentHW() {
               <th>Subject</th>
               <th>Attachment (Click to view)</th>
               <th>Queries</th>
+              <th>Remainders</th>
             </tr>
           </thead>
           <tbody>
@@ -55,6 +64,9 @@ function ParentHW() {
                 </td>
                 <td>
                   <p className={classes.button} onClick={() => onQueryClick(homework)}>Query</p>
+                </td>
+                <td>
+                  <p className={classes.button} onClick={() => onSetRemainderClick(homework)}>Set Remainder</p>
                 </td>
               </tr>
             ))}

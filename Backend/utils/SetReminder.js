@@ -1,15 +1,15 @@
 const Reminder = require("../models/Reminder");
 
-const SetReminder = Reminder.find({}, (err, reminderList) => {
+const SetReminder = async (req, res) => { Reminder.find({}, (err, reminderList) => {
   try {
     if (reminderList) {
       reminderList.forEach((reminder) => {
         if (!reminder.Isreminded) {
           const now = new Date();
-          const a =now.getTime();
-          console.log(a);
+        
           const phone = reminder.wpPhone;
-
+          
+          
           if (new Date(reminder.time) - now < 0) {
             Reminder.findByIdAndUpdate(
               reminder._id,
@@ -41,6 +41,6 @@ const SetReminder = Reminder.find({}, (err, reminderList) => {
     console.log(error);
     res.status(400).json({ error: error.message });
   }
-});
+});}
 
 module.exports = SetReminder;

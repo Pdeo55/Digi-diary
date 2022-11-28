@@ -26,7 +26,10 @@ app.use(
   })
 );
 
-setInterval(() => {SetReminder},2000);
+
+
+
+setInterval(SetReminder,2000);
 
 
 cloudinary.config({
@@ -37,6 +40,7 @@ cloudinary.config({
 
 // const a =process.env.CLOUDINARY_CLOUD_NAME
 // console.log(a)
+
 
 app.use(
   fileUpload({

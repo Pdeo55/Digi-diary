@@ -46,6 +46,8 @@ function ParentHW() {
               <th>Title</th>
               <th>Description</th>
               <th>Subject</th>
+              <th>Assigned On</th>
+              <th>Submission Date</th>
               <th>Attachment (Click to view)</th>
               <th>Queries</th>
               <th>Remainders</th>
@@ -57,6 +59,8 @@ function ParentHW() {
                 <td>{homework?.title}</td>
                 <td>{homework.description}</td>
                 <td>{homework.subject}</td>
+                <td>{homework.assignDate}</td>
+               <td>{homework.subDate}</td>
                 <td style={{ cursor: 'pointer' }}>
                   <a href={homework.attachment} target="_blank">
                     <GrAttachment />

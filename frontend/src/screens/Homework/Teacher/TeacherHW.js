@@ -5,6 +5,7 @@ import { Table } from 'react-bootstrap'
 import { GrAttachment } from 'react-icons/gr'
 import { AiFillDelete } from 'react-icons/ai'
 import { toast } from 'react-toastify'
+import DateTimePicker from "react-datetime-picker"
 import classes from '../Homework.module.css'
 import Spinner from '../../../components/Spinner/Spinner'
 
@@ -18,6 +19,7 @@ function TeacherHW() {
     const [subject, setSubject] = useState('')
     const [description, setDescription] = useState('')
     const [grade, setGrade] = useState('')
+    const [subDate,setsubDate]=useState('')
     const [attachment, setAttachment] = useState(null)
 
     const { user } = useSelector((state) => state.auth)
@@ -35,12 +37,15 @@ function TeacherHW() {
         e.preventDefault()
 
         let formData = new FormData()
+        const now = new Date();
 
         formData.append('attachment', attachment)
         formData.append('title', title)
         formData.append('subject', subject)
         formData.append('description', description)
         formData.append('grade', grade)
+        formData.append('subDate', subDate)
+        formData.append('assignDate', now)
         formData.append('teacherid', user._id)
 
         // post new homework for students
@@ -52,6 +57,7 @@ function TeacherHW() {
         setSubject('')
         setDescription('')
         setGrade('')
+        setsubDate('')
 
         toast.success('Homework Assigned')
     }
@@ -87,6 +93,8 @@ function TeacherHW() {
                                 <th>Title</th>
                                 <th>Description</th>
                                 <th>Subject</th>
+                                <th>Assigned On</th>
+                                <th>Submission Date</th>
                                 <th>Class</th>
                                 <th>Attachment (Click to view)</th>
                             </tr>
@@ -97,6 +105,8 @@ function TeacherHW() {
                                     <td>{homework?.title}</td>
                                     <td>{homework.description}</td>
                                     <td>{homework.subject}</td>
+                                    <td>{homework.assignDate}</td>
+                                    <td>{homework.subDate}</td>
                                     <td>{homework.grade}</td>
                                     <td style={{ cursor: 'pointer' }}>
                                         <a href={homework.attachment} target="_blank" rel="noreferrer" >
@@ -147,6 +157,17 @@ function TeacherHW() {
                             placeholder="Enter the description for the homework..."
                             required
                             onChange={(e) => setDescription(e.target.value)}
+                        />
+                    </div>
+                    <div className={classes.datePicker}>
+                        <p>Select a Date and Time</p>
+                        <DateTimePicker
+                            value={subDate}
+                            onChange={setsubDate}
+                            minDate={new Date()}
+                            dayPlaceholder='DD'
+                            monthPlaceholder='MM'
+                            yearPlaceholder='YYYY'
                         />
                     </div>
                     <div className={classes.formGroup}>

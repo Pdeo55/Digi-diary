@@ -6,6 +6,8 @@ const homeworkSchema = new mongoose.Schema(
    description:String,
    subject:String,
    grade:String,
+   assignDate:String,
+   subDate:String,
    teacherid:String,
    studentId:String,
    queQuery:String,

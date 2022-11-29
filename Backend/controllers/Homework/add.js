@@ -4,7 +4,8 @@ const cloudinary = require("cloudinary");
 const {roles} = require("../../utils/roles");
 
 const addHomework = async (req, res) => {
-    const { title, description, subject,grade,teacherid } = req.body;
+    const { title, description, subject,grade,teacherid,assignDate,
+      subDate } = req.body;
     try {
       let attach = await cloudinary.v2.uploader.upload(
         req.files.attachment.tempFilePath,
@@ -18,6 +19,8 @@ const addHomework = async (req, res) => {
         subject,
         grade,
         teacherid,
+        subDate,
+        assignDate,
         attachment: attach.secure_url,
         cloudinary_id: attach.public_id,
       });

@@ -37,7 +37,7 @@ function ParentHW() {
   return (
     <>
       {queModalShow && <QueryModal show={queModalShow} setShow={setQueModalShow} homework={homework} />}
-      {remModalShow && <RemainderModal show={remModalShow} setShow={setRemModalShow} homework={homework} />}
+      {remModalShow && <RemainderModal show={remModalShow} setShow={setRemModalShow} homework={homework}/>}
       <Container className='mt-5'>
         <Welcome />
         <Table striped bordered hover className={classes.parentTable}>

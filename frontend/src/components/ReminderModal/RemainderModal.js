@@ -4,6 +4,7 @@ import { postReminder } from '../../features/reminder/reminderSlice'
 import DateTimePicker from "react-datetime-picker"
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import { toast } from 'react-toastify'
 import classes from './Remainder.module.css'
 
 function RemainderModal({ show, setShow, homework }) {
@@ -28,6 +29,8 @@ function RemainderModal({ show, setShow, homework }) {
         console.log(reminderData)
         setReminderMsg('')
         setRemindAt('')
+        handleClose();
+        toast.success('Reminder set')
     }
 
     return (

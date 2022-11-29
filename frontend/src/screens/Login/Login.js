@@ -4,17 +4,37 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { login, reset } from '../../features/auth/authSlice'
+import useInput from '../../Hooks/use-input'
 import Spinner from '../../components/Spinner/Spinner'
 import classes from './Login.module.css'
 
+const isNotEmpty = (value) => value.trim() !== "";
+const isEmail = (value) => value.includes("@") && value.includes(".");
+
 function Login() {
 
-    const [formData, setFormData] = useState({
-        email: '',
-        password: '',
-    })
+    const {
+        value: email,
+        isValid: emailisValid,
+        hasError: emailhasError,
+        valueChangeHandler: emailChangeHandler,
+        inputBlurHandler: emailBlurHandler,
+        reset: resetemail,
+    } = useInput(isEmail);
 
-    const { email, password } = formData
+    const {
+        value: password,
+        isValid: passwordisValid,
+        hasError: passwordhasError,
+        valueChangeHandler: passwordChangeHandler,
+        inputBlurHandler: passwordBlurHandler,
+        reset: resetpassword,
+    } = useInput(isNotEmpty);
+
+    let formIsValid = false;
+    if (emailisValid && passwordisValid) {
+        formIsValid = true;
+    }
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
@@ -35,15 +55,12 @@ function Login() {
         dispatch(reset())
     }, [user, isError, isSuccess, message, navigate, dispatch])
 
-    const onChange = (e) => {
-        setFormData((prevState) => ({
-            ...prevState,
-            [e.target.name]: e.target.value,
-        }))
-    }
-
     const onSubmit = (e) => {
         e.preventDefault()
+
+        if(!formIsValid){
+            return ;
+        }
 
         const userData = {
             email,
@@ -51,6 +68,9 @@ function Login() {
         }
 
         dispatch(login(userData))
+
+        resetemail();
+        resetpassword();
     }
 
     if (isLoading) {
@@ -75,8 +95,11 @@ function Login() {
                             name='email'
                             value={email}
                             placeholder='Enter your email'
-                            onChange={onChange}
+                            onChange={emailChangeHandler}
+                            onBlur={emailBlurHandler}
+                            required
                         />
+                        {emailhasError ? <p className="error-text">Please Enter a valid Email ID!</p> : ""}
                     </div>
                     <div className={classes.formGroup}>
                         <input
@@ -86,8 +109,11 @@ function Login() {
                             name='password'
                             value={password}
                             placeholder='Enter password'
-                            onChange={onChange}
+                            onChange={passwordChangeHandler}
+                            onBlur={passwordBlurHandler}
+                            required
                         />
+                        {passwordhasError ? <p className="error-text">Please Enter valid Password!</p> : ""}
                     </div>
 
                     <div className={classes.formGroup}>

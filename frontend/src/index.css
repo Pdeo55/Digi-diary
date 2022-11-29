@@ -112,6 +112,7 @@ h3 {
     width: 70%;
     margin: 0 auto;
 }
+
 .btn {
     padding: 10px 20px;
     border: 1px solid #000;
@@ -190,4 +191,8 @@ h3 {
     .heading p {
         font-size: 1.5rem;
     }
+}
+
+.error-text {
+    color: red;
 }

@@ -4,6 +4,7 @@ import { createHomework, getHomeworkByTeacher, deleteHomework } from '../../../f
 import { Table } from 'react-bootstrap'
 import { GrAttachment } from 'react-icons/gr'
 import { AiFillDelete } from 'react-icons/ai'
+import { toast } from 'react-toastify'
 import classes from '../Homework.module.css'
 import Spinner from '../../../components/Spinner/Spinner'
 
@@ -42,8 +43,6 @@ function TeacherHW() {
         formData.append('grade', grade)
         formData.append('teacherid', user._id)
 
-        console.log("hi")
-
         // post new homework for students
         dispatch(createHomework(formData))
 
@@ -53,6 +52,8 @@ function TeacherHW() {
         setSubject('')
         setDescription('')
         setGrade('')
+
+        toast.success('Homework Assigned')
     }
 
     if (isLoading) {

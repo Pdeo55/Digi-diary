@@ -118,6 +118,7 @@ function Register() {
                   value={phoneNo}
                   placeholder="Enter your Contact Number"
                   onChange={onChange}
+                  required
                 />
               </div>
             </Col>
@@ -134,6 +135,7 @@ function Register() {
                   value={password}
                   placeholder="Enter password"
                   onChange={onChange}
+                  required
                 />
               </div>
             </Col>
@@ -147,6 +149,7 @@ function Register() {
                   value={password2}
                   placeholder="Confirm password"
                   onChange={onChange}
+                  required
                 />
               </div>
             </Col>

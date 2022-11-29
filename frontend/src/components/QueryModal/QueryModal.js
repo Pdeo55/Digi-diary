@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { postQuery } from '../../features/homworkQuery/querySlice';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import { toast } from 'react-toastify'
 import classes from './Query.module.css'
 
 function QueryModal({ show, setShow, homework }) {
@@ -20,8 +21,14 @@ function QueryModal({ show, setShow, homework }) {
     }
 
     const submitHandler = () => {
+
+        if(query.length() === 0){
+            return;
+        }
+
         dispatch(postQuery(queryData))
-        console.log(queryData)
+
+        toast.success('Query Submitted')
     }
 
     return (
@@ -32,10 +39,10 @@ function QueryModal({ show, setShow, homework }) {
                 </Modal.Header>
                 <Modal.Body>
                     <p>Hi <span style={{ fontWeight: "bold" }}>{user.name}</span> looks like you have a Query in your Homework!!</p>
-                    <p> <span className={classes.homeworkDetail}> Homework Title </span>: {homework.title}</p>
-                    <p>  <span className={classes.homeworkDetail}> Homework Description </span>: {homework.description} </p>
-                    <p>  <span className={classes.homeworkDetail}> Subject </span>: {homework.subject} </p>
-                    <textarea className={classes.textarea} value={query} onChange={(e) => setQuery(e.target.value)} placeholder='Enter your Query...' />
+                    <p><span className={classes.homeworkDetail}> Homework Title </span>: {homework.title}</p>
+                    <p><span className={classes.homeworkDetail}> Homework Description </span>: {homework.description} </p>
+                    <p><span className={classes.homeworkDetail}> Subject </span>: {homework.subject} </p>
+                    <textarea className={classes.textarea} value={query} required onChange={(e) => setQuery(e.target.value)} placeholder='Enter your Query...' />
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>

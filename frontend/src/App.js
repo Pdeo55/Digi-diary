@@ -23,7 +23,7 @@ function App() {
       <Container fluid>
         <Row>
           {user && <Col lg="2"><Profile /></Col>}
-          <Col lg={user ? "10" : "12"}>
+          <Col lg={user ? "10" : "12"} style={{borderLeft: "1px solid black"}}>
             <Navbar />
             <Routes>
               <Route path='/' element={<Homepage />} />

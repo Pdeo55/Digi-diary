@@ -160,7 +160,7 @@ function TeacherHW() {
                         />
                     </div>
                     <div className={classes.datePicker}>
-                        <p>Select a Date and Time</p>
+                        <p>Select a Last day of Submission</p>
                         <DateTimePicker
                             value={subDate}
                             onChange={setsubDate}

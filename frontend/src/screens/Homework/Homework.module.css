@@ -64,3 +64,13 @@
     color: white;
     border-radius: 8px;
 }
+
+.datePicker{
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.datePicker p{
+    padding: 0;
+    margin-bottom: 5px;
+}

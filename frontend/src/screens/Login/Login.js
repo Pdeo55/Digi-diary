@@ -58,8 +58,9 @@ function Login() {
     const onSubmit = (e) => {
         e.preventDefault()
 
-        if(!formIsValid){
-            return ;
+        if (!formIsValid) {
+            toast.error('Enter all form Details')
+            return;
         }
 
         const userData = {

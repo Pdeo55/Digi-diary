@@ -63,3 +63,9 @@
     width: 100%;
     margin-bottom: 20px;
 }
+
+.errorMsg{
+    color: red;
+    font-size: 13px;
+    padding-left: 8px;
+}

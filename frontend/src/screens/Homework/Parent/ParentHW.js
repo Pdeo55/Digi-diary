@@ -17,8 +17,8 @@ function ParentHW() {
 
   const [queModalShow, setQueModalShow] = useState(false);
   const [remModalShow, setRemModalShow] = useState(false);
-
   const [homework, setHomework] = useState({})
+  
 
   const onQueryClick = (homework) => {
     setQueModalShow(true)
@@ -37,7 +37,7 @@ function ParentHW() {
   return (
     <>
       {queModalShow && <QueryModal show={queModalShow} setShow={setQueModalShow} homework={homework} />}
-      {remModalShow && <RemainderModal show={remModalShow} setShow={setRemModalShow} homework={homework}/>}
+      {remModalShow && <RemainderModal show={remModalShow} setShow={setRemModalShow} homework={homework} />}
       <Container className='mt-5'>
         <Welcome />
         <Table striped bordered hover className={classes.parentTable}>
@@ -50,7 +50,7 @@ function ParentHW() {
               <th>Submission Date</th>
               <th>Attachment (Click to view)</th>
               <th>Queries</th>
-              <th>Remainders</th>
+              <th>Reminders</th>
             </tr>
           </thead>
           <tbody>
@@ -60,7 +60,7 @@ function ParentHW() {
                 <td>{homework.description}</td>
                 <td>{homework.subject}</td>
                 <td>{homework.assignDate}</td>
-               <td>{homework.subDate}</td>
+                <td>{homework.subDate}</td>
                 <td style={{ cursor: 'pointer' }}>
                   <a href={homework.attachment} target="_blank">
                     <GrAttachment />
@@ -70,7 +70,7 @@ function ParentHW() {
                   <p className={classes.button} onClick={() => onQueryClick(homework)}>Query</p>
                 </td>
                 <td>
-                  <p className={classes.button} onClick={() => onSetRemainderClick(homework)}>Set Remainder</p>
+                  <p className={classes.button} onClick={() => onSetRemainderClick(homework)}>Set Reminder</p>
                 </td>
               </tr>
             ))}

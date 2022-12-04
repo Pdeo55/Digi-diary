@@ -5,13 +5,23 @@ import DateTimePicker from "react-datetime-picker"
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { toast } from 'react-toastify'
+import useInput from '../../Hooks/use-input';
 import classes from './Remainder.module.css'
 
-function RemainderModal({ show, setShow, homework }) {
+const isNotEmpty = (value) => value.trim() !== "";
+
+function RemainderModal({ show, setShow, homework, setReminderHWid, setReminderMsg }) {
 
     const dispatch = useDispatch()
     const { user } = useSelector((state) => state.auth)
-    const [reminderMsg, setReminderMsg] = useState('')
+    const {
+        value: reminderMsg,
+        isValid: reminderMsgIsValid,
+        hasError: reminderMsgHasError,
+        valueChangeHandler: reminderMsgChangeHandler,
+        inputBlurHandler: reminderMsgBlurHandler,
+        reset: resetreminderMsg,
+    } = useInput(isNotEmpty);
     const [remindAt, setRemindAt] = useState();
 
     const handleClose = () => setShow(false);
@@ -25,9 +35,17 @@ function RemainderModal({ show, setShow, homework }) {
     }
 
     const submitHandler = () => {
+
+        if (!reminderMsgIsValid) {
+            return;
+        }
+
         dispatch(postReminder(reminderData))
-        console.log(reminderData)
-        setReminderMsg('')
+
+        setReminderMsg(reminderMsg);
+        setReminderHWid(true);
+
+        resetreminderMsg();
         setRemindAt('')
         handleClose();
         toast.success('Reminder set')
@@ -44,7 +62,16 @@ function RemainderModal({ show, setShow, homework }) {
                     <p> <span className={classes.homeworkDetail}> Homework Title </span>: {homework.title}</p>
                     <p>  <span className={classes.homeworkDetail}> Homework Description </span>: {homework.description} </p>
                     <p>  <span className={classes.homeworkDetail}> Subject </span>: {homework.subject} </p>
-                    <textarea className={classes.textarea} value={reminderMsg} onChange={(e) => setReminderMsg(e.target.value)} placeholder='Enter your Remainder Message...' />
+                    <div>
+                        <textarea
+                            className={classes.textarea}
+                            value={reminderMsg}
+                            onChange={reminderMsgChangeHandler}
+                            onBlur={reminderMsgBlurHandler}
+                            placeholder='Enter your Reminder Message...'
+                        />
+                        {reminderMsgHasError && <span className={classes.errorMsg}>Reminder Message should not be Empty</span>}
+                    </div>
                     <div className={classes.datePicker}>
                         <p>Select a Date and Time</p>
                         <DateTimePicker
@@ -56,6 +83,7 @@ function RemainderModal({ show, setShow, homework }) {
                             dayPlaceholder='DD'
                             monthPlaceholder='MM'
                             yearPlaceholder='YYYY'
+                            required
                         />
                     </div>
                 </Modal.Body>
@@ -64,7 +92,7 @@ function RemainderModal({ show, setShow, homework }) {
                         Close
                     </Button>
                     <Button variant="primary" onClick={submitHandler}>
-                        Set Remainder
+                        Set Reminder
                     </Button>
                 </Modal.Footer>
             </Modal>

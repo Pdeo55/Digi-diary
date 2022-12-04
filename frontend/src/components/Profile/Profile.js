@@ -18,9 +18,9 @@ function Profile() {
                 <>
                     <p style={{ fontSize: "2rem" }}>{user.name}</p>
                     <p> <span style={{ fontWeight: 'bold' }}> Class </span>: {user.grade}</p>
-                    <p> <span style={{ fontWeight: 'bold' }}> Class Teacher </span>: Riddhi Mirajkar</p>
-                    <p> <span style={{ fontWeight: 'bold' }}> Class Monitor </span>: Sahil Chaudhari</p>
-                    <p className={classes.timeTable}><Link>View Time Table</Link></p>
+                    {/* <p> <span style={{ fontWeight: 'bold' }}> Class Teacher </span>: Riddhi Mirajkar</p>
+                    <p> <span style={{ fontWeight: 'bold' }}> Class Monitor </span>: Sahil Chaudhari</p> */}
+                    {/* <p className={classes.timeTable}><Link>View Time Table</Link></p> */}
                 </>
             )}
             {user.role === "TEACHER" && (

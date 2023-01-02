@@ -61,12 +61,12 @@ function Homepage() {
                 <>
                     <Container fluid className='mt-5'>
                         <Row>
-                            <Col lg='11'>
+                            <Col>
                                 <Welcome />
                             </Col>
-                            <Col lg='1'>
+                            {/* <Col lg='1'>
                                 <button className={classes.queryButton}>See Student queries</button>
-                            </Col>
+                            </Col> */}
                         </Row>
                         <Row className={classes.options}>
                             <Col>

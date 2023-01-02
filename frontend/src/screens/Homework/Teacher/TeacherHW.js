@@ -121,7 +121,7 @@ function TeacherHW() {
                     {homeworks.length === 0 && <p>No Homeworks Assigned</p>}
                 </div>
             )}
-            <p className={classes.text}>Want to give your Students some Homework ??</p>
+            <p className={classes.text}>Want to give your Students some Homework ?</p>
             <section className={classes.form}>
                 <form onSubmit={onSubmit}>
                     <div className={classes.formGroup}>

@@ -13,7 +13,7 @@ homeworkRouter.get("/getbygrade/:id",homeworkbygrade);
 homeworkRouter.get("/getbyteacher/:id",homeworkbyteacher);
 homeworkRouter.delete("/delete/:id",deletehomework);
 homeworkRouter.post("/QuestionQuery",queQuery);
-homeworkRouter.get("/getQuestionQuery",getQuery);
+homeworkRouter.get("/getQuestionQuery/:id",getQuery);
 
 
 module.exports = homeworkRouter;

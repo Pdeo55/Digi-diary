@@ -24,7 +24,7 @@ const login = async (req, res) => {
       res.status(200).json(user);
     }
 
-    res.status(400).send("Invalid Credentials");
+    res.status(400).json("Invalid Credentials");
   } catch (error) {
     res.status(400).json({ error: error.message });
   }

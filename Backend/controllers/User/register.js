@@ -10,7 +10,7 @@ const roles = require("../../utils/roles")
 const addUser = async (req, res) => {
   const { name, phoneNo, email, password,role } = req.body;
   if (!(email && password && name)) {
-    res.status(400).send("All input is required");
+    res.status(400).json("All input is required");
   }
   try {
 

@@ -12,7 +12,7 @@ const homeworkSchema = new mongoose.Schema(
    studentId:String,
    queQuery:String,
    queId:String,
-   cloudinary_id: {
+   aws_S3_Etag: {
     type: String,
   },
   attachment: {

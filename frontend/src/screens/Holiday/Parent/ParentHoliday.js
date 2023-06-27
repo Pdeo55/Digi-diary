@@ -21,7 +21,7 @@ function ParentHoliday() {
         <thead>
           <tr>
             <th>Title</th>
-            <th>Attachment (Click to view)</th>
+            <th>Attachment (Click to view attachments) </th>
           </tr>
         </thead>
         <tbody>
